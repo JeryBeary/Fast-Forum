@@ -1,0 +1,32 @@
+<html lang = "en-US">
+<head>
+	{% load staticfiles %}
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'forum/css/index.css' %}">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato">
+	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Montserrat">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<h1 id = "title">FastForum</h1>
+	<h4 id = "subtitle">A quick to create a thread and pass it to others!</h4>
+	<br>
+	{% block content %}
+	<form role="form" action="" method="post">
+	{% csrf_token %}
+
+	<div id = "body_box">
+		{{ form.as_p }}
+	</div>
+	<br>
+	<button id = "submit" type="submit">Create New Thread</button>
+	</form>
+	{% endblock %}
+</body>
+</html>

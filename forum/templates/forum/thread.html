@@ -1,0 +1,50 @@
+<html lang = "en-US">
+	<head>
+		{% load staticfiles %}
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans">
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Raleway">
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Roboto">
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato">
+		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Montserrat">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="{% static 'forum/css/thread.css' %}">
+	</head>
+	<body>
+
+			<div id = "title_box">
+				<h3 id = "title">{{ thread.title }}</h3>
+			</div>
+			<div id = "description_box">
+				<p id = "description">{{ thread.description }}</p>
+			</div>
+			<div id = "time_box">
+				<h5 id = "time">Created on {{ thread.pub_date }}</h5>
+			</div>
+			<div id= "comments_area">
+			<div class = "row" style = "margin:0 auto;">
+				<div class = "col-md-4">
+					<form role = "form" action= "" method = "post" class = "center-block">
+					{% csrf_token %}
+						<div id = "body_box" >
+							{{ form.as_p }}
+						</div>
+						<button class = "center-block" id = "submit" type="submit">Comment</button>
+					</form>
+				</div>
+				<div class = "col-md-8">
+					<div id = "comments" class = "center-block">
+					{% for comment in thread.comment_set.all %}
+						<li class = "comment {% if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}">
+						<p>{{ comment.text }}</p>
+						<h6>{{ comment.pub_date }}</h6>
+						</li>
+					{% endfor %}
+					</div>
+				</div>
+			</div>
+			</div>
+	</body>
+</html>
