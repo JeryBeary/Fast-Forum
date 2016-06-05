@@ -13,14 +13,4 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='comment',
-            name='replies',
-            field=forum.models.ListField(default=[]),
-        ),
-        migrations.AddField(
-            model_name='thread',
-            name='comments',
-            field=forum.models.ListField(default=[]),
-        ),
     ]
